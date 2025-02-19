@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lá Thư Sinh Nhật</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fce4ec;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+
+
+        .envelope {
+            width: 350px;
+            height: 200px;
+            background-color: #f8bbd0;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transform: perspective(500px) rotateX(0deg);
+            transition: all 1s ease;
+        }
+
+        
+
+        .envelope .flap-top,
+        .envelope .flap-bottom {
+            background-color: #f48fb1;
+            height: 60px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            transition: all 1s ease;
+        }
+
+        .envelope .flap-top {
+            top: 0;
+            transform-origin: top;
+        }
+
+        .envelope .flap-bottom {
+            bottom: 0;
+            transform-origin: bottom;
+        }
+
+        .envelope.opened .flap-top {
+            transform: rotateX(180deg);
+        }
+
+        .envelope.opened .flap-bottom {
+            transform: rotateX(-180deg);
+        }
+
+        .letter-content {
+            padding: 30px;
+            font-size: 20px;
+            color: #fff;
+            text-align: center;
+            display: none;
+            background-color: #ec407a;
+            border-radius: 10px;
+        }
+
+        .envelope.opened .letter-content {
+            display: block;
+        }
+
+        .button {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #ec407a;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #d81b60;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="envelope" id="envelope">
+        <div class="flap-top"></div>
+        <div class="flap-bottom"></div>
+        <div class="letter-content">  
+        </div>
+        <a href="https://chienbee.github.io/lathu/" class="button" id="openLinkButton">Mở Lá Thư</a>
+
+    <script>
+        const envelope = document.getElementById("envelope");
+        const openButton = document.getElementById("openButton");
+        const openLinkButton = document.getElementById("openLinkButton");
+
+        openButton.addEventListener("click", function() {
+            envelope.classList.add("opened");
+            openButton.style.display = "none"; // Ẩn nút mở
+        });
+
+        // Liên kết sẽ chuyển đến tệp mới khi người dùng nhấn vào nút Mở Trang Mới
+        openLinkButton.addEventListener("click", function(e) {
+            e.preventDefault();  // Ngừng chuyển hướng mặc định
+            window.location.href = openLinkButton.getAttribute("href"); // Chuyển hướng đến trang mới
+        });
+    </script>
+
+</body>
+</html>
